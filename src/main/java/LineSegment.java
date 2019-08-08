@@ -1,9 +1,8 @@
 import java.util.ArrayList;
-
 public class LineSegment {
     Point start;
     Point end;
-    ArrayList<Integer[]> Points;
+    ArrayList<Point> Points;
     String parallelTo;
     public LineSegment(int x1,int y1,int x2,int y2) {
         if ((x1 == x2 && y1 > y2) || (y1 == y2 && x1 > x2)) {
@@ -21,6 +20,6 @@ public class LineSegment {
         {
             this.parallelTo="y";
         }
-        this.Points=new ArrayList<Integer[]>();
+        this.Points=new ArrayList<Point>();
     }
 }
