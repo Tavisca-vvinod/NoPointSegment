@@ -1,13 +1,15 @@
 public class Program {
     public static void main(String[] args) {
         System.out.println((NoPointSegment.findIntersection(new int[]{0, 0, 0, 1}, new int[]{1, 0, 1, 1}).equals("NO")) ? "PASS" : "FAIL");
+        System.out.println(" ");
         System.out.println((NoPointSegment.findIntersection(new int[]{0, 0, 0, 1}, new int[]{0, 1, 0, 2}).equals("POINT")) ? "PASS" : "FAIL");
+        System.out.println(" ");
         System.out.println((NoPointSegment.findIntersection(new int[]{0, -1,0, 1}, new int[]{-1, 0, 1, 0}).equals("POINT")) ? "PASS" : "FAIL");
+        System.out.println(" ");
         System.out.println((NoPointSegment.findIntersection(new int[]{0, 0, 2, 0 }, new int[]{1 ,0,10, 0}).equals("SEGMENT")) ? "PASS" : "FAIL");
+        System.out.println(" ");
         System.out.println((NoPointSegment.findIntersection(new int[]{5, 5, 5, 5 }, new int[]{6, 6, 6, 6}).equals("NO")) ? "PASS" : "FAIL");
+        System.out.println(" ");
         System.out.println((NoPointSegment.findIntersection(new int[]{10, 0,-10,0}, new int[]{5, 0, -5,0}).equals("SEGMENT")) ? "PASS" : "FAIL");
-
-       LineSegment line = new LineSegment(3,1,-3,1);
-       System.out.println(line.start.x +" "+line.start.y+" "+line.end.x+" "+line.end.y);
     }
 }
