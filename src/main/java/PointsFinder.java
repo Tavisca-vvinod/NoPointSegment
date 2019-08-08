@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 public class PointsFinder {
     public static int PointsInCommonFinder(LineSegment line1, LineSegment line2) {
-        int count=0;
+        int pointsInCommon=0;
         for(Point i : line1.Points) {
             for(Point j : line2.Points)
             {
                 if(j.x==i.x && j.y==i.y) {
-                    count++;
+                    pointsInCommon++;
                 }
             }
         }
-        return count;
+        return pointsInCommon;
     }
     public static ArrayList<Point> findPointsOnLine(LineSegment line) {
         if (line.parallelTo.equals("x")) {
