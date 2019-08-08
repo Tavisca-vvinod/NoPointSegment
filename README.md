@@ -16,7 +16,8 @@ Constraints
 -	 Each segment will be parallel to either the X axis or the Y axis
  
 Examples
-1)    	
+
+ 1)    	
 {0, 0, 0, 1}	
 {1, 0, 1, 1}
 Returns: "NO"
