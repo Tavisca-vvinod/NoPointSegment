@@ -1,0 +1,131 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Codejam
+{
+    public class PointsFinder
+    {
+        public static int PointsInCommonFinder(LineSegment line1, LineSegment line2)
+        {
+            int pointsInCommon = 0;
+            foreach (Point i in line1.Points)
+            {
+                foreach (Point j in line2.Points)
+                {
+                    if (j.x == i.x && j.y == i.y)
+                    {
+                        pointsInCommon++;
+                    }
+                }
+            }
+            return pointsInCommon;
+        }
+        public static List<Point> findPointsOnLine(LineSegment line)
+        {
+            if (line.parallelTo.Equals("x"))
+            {
+                for (int i = line.start.y; i <= line.end.y; i++)
+                {
+                    line.Points.Add(new Point(line.start.x, i));
+                }
+            }
+            if (line.parallelTo.Equals("y"))
+            {
+                for (int i = line.start.x; i <= line.end.x; i++)
+                {
+                    line.Points.Add(new Point(i, line.start.y));
+                }
+            }
+            return line.Points;
+        }
+    }
+
+
+    public class Point
+    {
+        public int x;
+        public int y;
+        public Point(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    public class LineSegment
+    {
+        public Point start;
+        public Point end;
+        public List<Point> Points;
+        public String parallelTo;
+        public LineSegment(int x1, int y1, int x2, int y2)
+        {
+            if ((x1 == x2 && y1 > y2) || (y1 == y2 && x1 > x2))
+            {
+                this.start = new Point(x2, y2);
+                this.end = new Point(x1, y1);
+            }
+            else
+            {
+                this.start = new Point(x1, y1);
+                this.end = new Point(x2, y2);
+            }
+            if (x1 == x2)
+            {
+                this.parallelTo = "x";
+            }
+            else
+            {
+                this.parallelTo = "y";
+            }
+            this.Points = new List<Point>();
+        }
+    }
+    public class NoPointSegment
+    {
+        public static String findIntersection(int[] line1Points, int[] line2Points)
+        {
+            LineSegment line1 = new LineSegment(line1Points[0], line1Points[1], line1Points[2], line1Points[3]);
+            LineSegment line2 = new LineSegment(line2Points[0], line2Points[1], line2Points[2], line2Points[3]);
+            line1.Points = PointsFinder.findPointsOnLine(line1);
+            line2.Points = PointsFinder.findPointsOnLine(line2);
+            int count = PointsFinder.PointsInCommonFinder(line1, line2);
+            String relation = NoPointSegment.RelationFinder(count);
+            return relation;
+        }
+        public static String RelationFinder(int count)
+        {
+            if (count >= 2)
+            {
+                return "SEGMENT";
+            }
+            if (count == 1)
+            {
+                return "POINT";
+            }
+            return "NO";
+        }
+        public string Intersection(int[] seg1, int[] seg2)
+        {
+            return string.Empty;
+        }
+
+        #region Testing code Do not change
+        public static void Main(String[] args)
+        {
+            string input = Console.ReadLine();
+            NoPointSegment solver = new NoPointSegment();
+            do
+            {
+                var segments = input.Split('|');
+                var segParts = segments[0].Split(',');
+                var seg1 = new int[4] { int.Parse(segParts[0]), int.Parse(segParts[1]), int.Parse(segParts[2]), int.Parse(segParts[3]) };
+                segParts = segments[1].Split(',');
+                var seg2 = new int[4] { int.Parse(segParts[0]), int.Parse(segParts[1]), int.Parse(segParts[2]), int.Parse(segParts[3]) };
+                Console.WriteLine(findIntersection(seg1, seg2));
+                input = Console.ReadLine();
+            } while (input != "-1");
+        }
+        #endregion
+    }
+}
